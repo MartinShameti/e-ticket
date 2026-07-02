@@ -45,12 +45,13 @@ public class Main {
         vehicleService.registerVehicle(v3);
 
         // create users
-        userService.createUser(new User("admin", "admin123", Role.ADMIN));
-        userService.createUser(new User("jsmith", "pass123", Role.OFFICER));
-        userService.createUser(new User("alice", "pass456", Role.CITIZEN));
+        UserRepository userRepo = new UserRepository(emf);
+        userRepo.save(new User("jsmith", "pass123"));
+        userRepo.save(new User("alice", "pass456"));
+        userRepo.save(new User("charlie", "pass789"));
 
         System.out.println("-- Users --");
-        userService.getAllUsers().forEach(System.out::println);
+        userRepo.findAll().forEach(System.out::println);
 
         // create fines
         Fine f1 = new Fine("Speeding", 100.0, v1, p1);

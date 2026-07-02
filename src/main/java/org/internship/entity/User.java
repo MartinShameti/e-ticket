@@ -16,15 +16,11 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
     public User() {}
 
-    public User(String username, String password, Role role) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.role = role;
     }
 
     public Long getId() { return id; }
@@ -36,11 +32,8 @@ public class User {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
-    public Role getRole() { return role; }
-    public void setRole(Role role) { this.role = role; }
-
     @Override
     public String toString() {
-        return "User{id=" + id + ", username='" + username + "', role=" + role + "}";
+        return "User{id=" + id + ", username='" + username + "'}";
     }
 }
